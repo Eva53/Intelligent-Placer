@@ -80,6 +80,6 @@
 
 Ответ - TRUE
 
-![Где изображение?](https://github.com/Eva53/Intelligent-Placer/blob/develop/Tests/IMG_2509.png)
+![Где изображение?](https://github.com/Eva53/Intelligent-Placer/blob/develop/Tests/IMG_2509.jpeg)
 
 Ответ - TRUE
