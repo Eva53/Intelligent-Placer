@@ -45,13 +45,20 @@ def get_object_mask(path_to_image):
 
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+
+    masks_coords = []
     # Обвести все обнаруженные контуры и нарисовать обнаруженные точки координат на изображении
     for c in contours:
         cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
         cv2.fillPoly(image_binary, pts=[c], color=(255, 0, 0))
 
     image_contours = image
+    
+    return image_BGR, image_binary, image_contours, contours
 
+
+
+def show_mask(image_BGR, image_binary, image_contours, contours):
     # выведем изображения
     imgs = []
     imgs.append(image_BGR)
@@ -69,5 +76,38 @@ def get_object_mask(path_to_image):
 
     plt.show()
 
-
-
+def test(test_images):
+    result_area = []
+    result_radius = []
+    for p in test_images:
+        radius = []
+        image_BGR, image_binary, image_contours, cnts = get_object_mask(p)
+        show_mask(image_BGR, image_binary, image_contours, cnts)
+        # считаем площади контуров объектов
+        areas = [cv2.contourArea(cnt) for cnt in cnts]
+        sum_obj_area = 0
+        # находим радиус описанной окружности
+        for cnt in cnts:
+            (_, _), r = cv2.minEnclosingCircle(cnt)
+            radius.append(2.0 * r)
+        rad_is_less = True
+        count_obj = 0
+        for i in range(1, len(areas)):
+            count_obj = count_obj + 1
+            sum_obj_area += areas[i]
+            # сравниваем радиус каждого предмета с радиусом многоугольника
+            if radius[i] > radius[0]:
+                rad_is_less = False
+            print('radius of object #' + str(count_obj) + ' less than figure one - ' + str(rad_is_less))
+        # сравниваем сумму площадей объектов с площадью многоугольника
+        if sum_obj_area < areas[0]:
+            sum_areas_is_less = True
+        else:
+            sum_areas_is_less = False
+        result_area.append(sum_areas_is_less)
+        result_radius.append(rad_is_less)
+        if len(cnts) <= 1:
+            print("False\nNot all requirements for the algorithm are met. There are no objects or figure")
+        else:
+            print('area - ' + str(sum_areas_is_less))
+    return result_area, result_radius
