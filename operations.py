@@ -78,10 +78,9 @@ def show_mask(image_BGR, image_binary, image_contours, contours):
 
 def test(test_images):
     result_area = []
-    result_radius = []
-    for p in test_images:
+    for img in test_images:
         radius = []
-        image_BGR, image_binary, image_contours, cnts = get_object_mask(p)
+        image_BGR, image_binary, image_contours, cnts = get_object_mask(img)
         show_mask(image_BGR, image_binary, image_contours, cnts)
         # считаем площади контуров объектов
         areas = [cv2.contourArea(cnt) for cnt in cnts]
@@ -105,9 +104,8 @@ def test(test_images):
         else:
             sum_areas_is_less = False
         result_area.append(sum_areas_is_less)
-        result_radius.append(rad_is_less)
         if len(cnts) <= 1:
             print("False\nNot all requirements for the algorithm are met. There are no objects or figure")
         else:
             print('area - ' + str(sum_areas_is_less))
-    return result_area, result_radius
+    return result_area
