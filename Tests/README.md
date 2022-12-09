@@ -2,7 +2,7 @@
 
 1. Проверка на то, что 1 маленький предмет может поместиться в большой многоугольник 
 
-![Где изображение?](https://github.com/Eva53/Intelligent-Placer/blob/develop/Tests/IMG_3561.jpeg)
+![Где изображение?](https://github.com/Eva53/Intelligent-Placer/blob/main/Tests/IMG_3561.jpeg)
 
 Ответ - TRUE
 
