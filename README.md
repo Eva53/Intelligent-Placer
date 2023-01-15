@@ -53,8 +53,8 @@
 
 # Изображения предметов(исходные данные) #
 
-[Исходные данные](https://github.com/Eva53/Intelligent-Placer/tree/develop/data/Items)
+[Исходные данные](https://github.com/Eva53/Intelligent-Placer/tree/main/data/Items)
 
 # Тесты #
 
-[Тесты](https://github.com/Eva53/Intelligent-Placer/tree/develop/data/Tests)
+[Тесты](https://github.com/Eva53/Intelligent-Placer/tree/main/data/Tests)
